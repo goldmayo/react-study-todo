@@ -1,0 +1,35 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "ignorePatterns": ["node_modules/", "public", "*.config.[jt]s", "**/*.md"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": { "jsx": true },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "settings": {},
+  "extends": ["prettier"],
+  "plugins": ["eslint-plugin-react", "eslint-plugin-react-hooks", "eslint-plugin-simple-import-sort", "unused-imports"],
+  "rules": {
+    "react-hooks/rules-of-hooks": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "function-declaration"
+      }
+    ],
+    "no-console": "warn",
+    "no-unused-vars": "warn",
+    "no-useless-catch": 0,
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "unused-imports/no-unused-imports-ts": ["error"]
+  }
+}
