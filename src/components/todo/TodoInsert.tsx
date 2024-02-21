@@ -17,7 +17,7 @@ export default function TodoInsert() {
   const { add } = useTodoStore()
 
   // 데이터
-  const nextId = useRef(2500)
+  const nextId = useRef(2501)
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

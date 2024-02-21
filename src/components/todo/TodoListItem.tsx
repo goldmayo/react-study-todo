@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import React from 'react'
 import { MdCheckBox, MdCheckBoxOutlineBlank, MdRemoveCircleOutline } from 'react-icons/md'
 
 import { cn } from '@/lib/utils'
@@ -9,12 +10,13 @@ interface ITodoListItem {
   content: TodoItem
 }
 
-export default function TodoListItem({ content }: ITodoListItem) {
+function TodoListItem({ content }: ITodoListItem) {
   const { id, text, checked } = content
   // 액션
   const { toggleComplete, remove } = useTodoStore()
-  const onToggleComplete = useCallback(() => toggleComplete(id), [])
-  const onRemove = useCallback(() => remove(id), [])
+
+  const onToggleComplete = useCallback(() => toggleComplete(id), [content])
+  const onRemove = useCallback(() => remove(id), [content])
 
   return (
     <div className="flex items-center border-t border-solid border-gray-300 p-4 even:bg-[#f8f9fa]">
@@ -28,3 +30,5 @@ export default function TodoListItem({ content }: ITodoListItem) {
     </div>
   )
 }
+
+export default React.memo(TodoListItem)
