@@ -1,8 +1,10 @@
+import React from 'react'
+
 import TodoListItem from '@/components/todo/TodoListItem'
 import { useTodoStore } from '@/store/slice/todo'
 import { TodoItem } from '@/types/todo'
 
-export default function TodoList() {
+function TodoList() {
   const { todos } = useTodoStore()
   return (
     <div className="max-h-[513px] min-h-[320px] overflow-y-auto">
@@ -12,3 +14,5 @@ export default function TodoList() {
     </div>
   )
 }
+
+export default React.memo(TodoList)
