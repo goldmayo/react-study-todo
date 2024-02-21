@@ -10,6 +10,18 @@ type TodoStore = {
   remove: (todoId: number) => void
   toggleComplete: (todoId: number) => void
 }
+// 벌크 데이터 생성
+function createBulkTodos(): Todo {
+  const array = []
+  for (let i = 4; i <= 2500; i++) {
+    array.push({
+      id: i,
+      text: `할일 ${i}`,
+      checked: false,
+    })
+  }
+  return array
+}
 
 // 더미 데이터 로드
 
@@ -20,7 +32,7 @@ const dummy_todos: Todo = dummy_todo_list
 export const useTodoStore = create<TodoStore>()(
   devtools((set, get) => ({
     // 데이터
-    todos: [...dummy_todos],
+    todos: [...dummy_todos, ...createBulkTodos()],
     // 액션
     add: (todoItem: TodoItem) => {
       const { todos } = get()
@@ -65,7 +77,6 @@ const TodoController = (todos: Todo) => ({
     let newTodos = todos.map((todo) => (todo.id === todoId ? { ...todo, checked: !todo.checked } : todo))
     return TodoController([...newTodos])
   },
-
   // TodoController의 현재 todos를 리턴
   get: () => todos,
 })
